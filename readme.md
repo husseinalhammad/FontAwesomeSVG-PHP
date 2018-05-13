@@ -13,7 +13,7 @@ A PHP class that can be used to add [Font Awesome 5+](https://fontawesome.com/)'
 
 ### Examples
 
-```
+```php
 // $dir = directory where SVG files are
 $FA = new FontAwesomeSVG($dir);
 
@@ -22,30 +22,37 @@ echo $FA->get_svg('fas fa-file');
 
 Add custom classes:
 
-```
+```php
 echo $FA->get_svg('fas fa-file', ['class' => 'my-custom-class another-class']);
 ```
 
 Remove default class `.svg-inline--fa`:
 
-```
+```php
 echo $FA->get_svg('fas fa-file', ['default_class' => false]);
+```
+
+Change `<path>` fill (default is `currentColor`):
+
+```php
+echo $FA->get_svg('fas fa-file', ['fill' => '#f44336']);
 ```
 
 Add `<title></title>`:
 
-```
+```php
 echo $FA->get_svg('fas fa-file', ['title' => 'My accessible icon']);
 ```
 
 Multiple options at once:
 
-```
+```php
 echo $FA->get_svg('fas fa-file', [
     'class' => 'my-custom-class another-class',
     'default_class' => false,
     'title' => 'My title',
     'role' => 'img',
+    'fill' => '#ffffff',
 ]);
 ```
 

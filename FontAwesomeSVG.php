@@ -29,6 +29,7 @@ class FontAwesomeSVG {
             'class' => false,
             'default_class' => true,
             'role' => 'img',
+            'fill' => 'currentColor',
         ];
 
         if (is_array($opts)) {
@@ -48,6 +49,8 @@ class FontAwesomeSVG {
         }
 
 
+        
+
         foreach ($doc->getElementsByTagName('svg') as $item) {
             if($classes != '') $item->setAttribute('class', $classes);
             if($opts['role']) $item->setAttribute('role', $opts['role']);
@@ -65,6 +68,10 @@ class FontAwesomeSVG {
             } else {
                 $item->setAttribute('aria-hidden', 'true');
             }
+        }
+
+        foreach ($doc->getElementsByTagName('path') as $item) {
+            $item->setAttribute('fill', $opts['fill']);
         }
         
         return $doc->saveHTML();
