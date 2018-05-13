@@ -11,7 +11,7 @@ A PHP class that can be used to add [Font Awesome 5+](https://fontawesome.com/)'
 * Get the folder `advanced-options/raw-svg` and place it in your project
 * Add `svg-with-js/css/fa-svg-with-js` to your document (or write your own CSS)
 
-### Basic examples
+### Examples
 
 ```
 // $dir = directory where SVG files are
@@ -37,6 +37,18 @@ Add `<title></title>`:
 ```
 echo $FA->get_svg('fas fa-file', ['title' => 'My accessible icon']);
 ```
+
+Multiple options at once:
+
+```
+echo $FA->get_svg('fas fa-file', [
+    'class' => 'my-custom-class another-class',
+    'default_class' => false,
+    'title' => 'My title',
+    'role' => 'img',
+]);
+```
+
 
 
 
