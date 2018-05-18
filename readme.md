@@ -2,6 +2,16 @@
 
 A PHP class that can be used to add [Font Awesome 5+](https://fontawesome.com/)'s SVG icons inline without Javascript.
 
+## Installation
+
+You can install it using Composer:
+
+```
+composer require husseinalhammad/fontawesome-svg
+```
+
+Or you can download the `FontAwesomeSVG.php` file and include it manually.
+
 
 ## Usage
 
@@ -56,7 +66,13 @@ echo $FA->get_svg('fas fa-file', [
 ]);
 ```
 
-
+| Option                | What it means   |
+|-----------------------|--------------------------------------------------------------------------|
+| class                 | Adds classes to the SVG tag |
+| default_class         | If set to `false`, the default CSS class won't be added to the SVG tag. Deafult: `true`.  |
+| title                 | Adds a `<title>` inside the SVG tag for semantic icons |
+| role                  | The value of the `role` attribute in the SVG tag. Default: `img` |
+| fill                  | The value of the `fill` attribute in the `<path>` inside the SVG. Default: `currentColor` |
 
 
 ## Accessibility
