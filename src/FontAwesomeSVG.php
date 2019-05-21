@@ -60,11 +60,15 @@ class FontAwesomeSVG {
                 $title = $doc->createElement("title");
                 $title->nodeValue = $opts['title'];
 
-                // TODO: add aria-labelledby
-                //$title->setAttribute('id', '');
-                //$item->setAttribute('aria-labelledby', '');
+                $title_node = $item->appendChild($title);
 
-                $item->appendChild($title);
+                // <title> id attribute has to be set to add aria-labelledby
+                if(isset($opts['title_id'])) {
+                    $title_id = $opts['title_id'];
+                    $title_node->setAttribute('id', $title_id);
+                    $item->setAttribute('aria-labelledby', $title_id);
+                }
+                
             } else {
                 $item->setAttribute('aria-hidden', 'true');
             }
