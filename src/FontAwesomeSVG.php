@@ -49,11 +49,22 @@ class FontAwesomeSVG {
         }
 
 
+        // $opts[aria-*]
+        // strlen('aria-') = 5
+        $aria_opts = array_filter($opts, function($item, $key){
+            if(substr($key, 0, 5) == 'aria-') return $item;
+        }, ARRAY_FILTER_USE_BOTH);
+
         
 
         foreach ($doc->getElementsByTagName('svg') as $item) {
             if($classes != '') $item->setAttribute('class', $classes);
             if($opts['role']) $item->setAttribute('role', $opts['role']);
+
+
+            foreach($aria_opts as $key => $val) {
+                $item->setAttribute($key, $val);
+            }
             
 
             if($opts['title']) {
@@ -69,11 +80,13 @@ class FontAwesomeSVG {
                     $item->setAttribute('aria-labelledby', $title_id);
                 }
                 
-            } else {
+            } elseif(isset($aria_opts['aria-hidden'])) {
                 $item->setAttribute('aria-hidden', 'true');
             }
         }
 
+
+        
         foreach ($doc->getElementsByTagName('path') as $item) {
             $item->setAttribute('fill', $opts['fill']);
         }
