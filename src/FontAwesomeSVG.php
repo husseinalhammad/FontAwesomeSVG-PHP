@@ -18,7 +18,7 @@ class FontAwesomeSVG {
      * @param array $opts   options array
      * @return string|boolean
      */
-    public function get_svg($id, $opts=false) {
+    public function get_svg($id, $opts=[]) {
         try {
             $icon = $this->get_icon_details($id);
         } catch(Exception $e) {
@@ -36,11 +36,7 @@ class FontAwesomeSVG {
             'fill' => 'currentColor',
         ];
 
-        if (is_array($opts)) {
-            $opts = array_merge($default_opts, $opts);
-        } else {
-            $opts = $default_opts;
-        }
+        $opts = array_merge($default_opts, $opts);
 
 
 
