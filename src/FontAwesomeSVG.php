@@ -12,7 +12,11 @@ class FontAwesomeSVG {
 
 
     /**
+     * Get SVG icon
      * 
+     * @param string $id    icon ID e.g. fas fa-house
+     * @param array $opts   options array
+     * @return string|boolean
      */
     public function get_svg($id, $opts=false) {
         try {
