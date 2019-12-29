@@ -85,7 +85,10 @@ class FontAwesomeSVG {
 
 
     /**
+     * Get an icon's details from icon ID
      * 
+     * @param string $id    icon ID e.g. fas fa-house
+     * @return array
      */
     public function get_icon_details($id) {
         $icon = array();
@@ -109,10 +112,13 @@ class FontAwesomeSVG {
 
 
     /**
+     * Get the directory that contains the SVG icon file
      * 
+     * @param string $style
+     * @return string
      */
-    public function get_icon_dir($iconID) {
-        switch($iconID) {
+    public function get_icon_dir($style) {
+        switch($style) {
             case 'fas':
                 $dir = 'solid';
                 break;
@@ -140,7 +146,10 @@ class FontAwesomeSVG {
 
 
     /**
+     * Get the icon's SVG file name
      * 
+     * @param string $icon_name
+     * @return string
      */
     public function get_icon_filename($icon_name) {
         return str_replace('fa-', '', $icon_name);
