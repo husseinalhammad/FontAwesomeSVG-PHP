@@ -71,6 +71,7 @@ echo $FA->get_svg('fas fa-file', [
 | class                 | Adds classes to the SVG tag |
 | default_class         | If set to `false`, the default CSS class won't be added to the SVG tag. Deafult: `true`.  |
 | title                 | Adds a `<title>` inside the SVG tag for semantic icons |
+| title_id              | Adds an `id` attribute to `<title>` and adds `aria-labelledby` on the SVG tag with the same value |
 | role                  | The value of the `role` attribute in the SVG tag. Default: `img` |
 | fill                  | The value of the `fill` attribute in the `<path>` inside the SVG. Default: `currentColor` |
 
@@ -79,3 +80,4 @@ echo $FA->get_svg('fas fa-file', [
 
 * `role="img"` is added to the SVG tag by default
 * `aria-hidden="true"` is added to the SVG tag by default unless a `<title>` is set
+* You can add `aria-labelledby` to the SVG tag and `id` to `<title>`
