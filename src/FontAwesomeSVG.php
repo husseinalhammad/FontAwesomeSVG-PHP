@@ -80,7 +80,10 @@ class FontAwesomeSVG {
                     $item->setAttribute('aria-labelledby', $title_id);
                 }
                 
-            } elseif(isset($aria_opts['aria-hidden'])) {
+            } 
+            
+            
+            if(!isset($aria_opts['aria-label']) && !isset($opts['title_id'])) {
                 $item->setAttribute('aria-hidden', 'true');
             }
         }

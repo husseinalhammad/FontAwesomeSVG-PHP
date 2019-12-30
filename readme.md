@@ -128,7 +128,7 @@ echo $FA->get_svg('fas fa-file', [
 
 ### `aria-hidden` attribute
 
-`aria-hidden="true"` is added to the SVG tag by default unless `<title id="">` or `aria-label` is set.
+`aria-hidden="true"` is added to the SVG tag by default unless `<title id="">` (and `aria-labelledby`) or `aria-label` is set.
 
 ```php
 echo $FA->get_svg('fas fa-file');
