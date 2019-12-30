@@ -78,6 +78,62 @@ echo $FA->get_svg('fas fa-file', [
 
 ## Accessibility
 
-* `role="img"` is added to the SVG tag by default
-* `aria-hidden="true"` is added to the SVG tag by default unless a `<title>` is set
-* You can add `aria-labelledby` to the SVG tag and `id` to `<title>`
+The below is implemented based on:
+
+- Font Awesome's [Accessibility docs](https://fontawesome.com/how-to-use/on-the-web/other-topics/accessibility)
+- Heather Migliorisi's article on CSS-Tricks [Accessible SVGs](https://css-tricks.com/accessible-svgs/)
+
+
+### `role` attribute
+
+`role="img"` is added to the SVG tag by default:
+
+```html
+<svg role="img"></svg>
+```
+
+
+### `<title>`, `aria-labelledby`
+
+You can set a `<title>`, an `id` for the `<title>` and the `aria-labelledby` attribute will be added automatically:
+
+```php
+echo $FA->get_svg('fas fa-file', [
+    'title' => 'File',
+    'title_id' => 'file-id',
+]);
+```
+
+```html
+<svg aria-labelledby="file-id">
+    <title id="file-id">File</title>
+</svg>
+```
+
+
+### `aria-*` attributes
+
+You can add any aria-* attribute to the SVG tag:
+
+```php
+echo $FA->get_svg('fas fa-file', [
+    'aria-label' => 'File',
+]);
+```
+
+```html
+<svg aria-label="File"></svg>
+```
+
+
+### `aria-hidden` attribute
+
+`aria-hidden="true"` is added to the SVG tag by default unless `<title id="">` or `aria-label` is set.
+
+```php
+echo $FA->get_svg('fas fa-file');
+```
+
+```html
+<svg aria-hidden="true"></svg>
+```
