@@ -12,14 +12,13 @@ composer require husseinalhammad/fontawesome-svg
 
 Or you can download the `FontAwesomeSVG.php` file and include it manually.
 
-
 ## Usage
 
 ### Files
 
-* Download Font Awesome (Free or Pro)
-* Get the folder `advanced-options/raw-svg` and place it in your project
-* Add `svg-with-js/css/fa-svg-with-js` to your document (or write your own CSS)
+- Download Font Awesome (Free or Pro)
+- Get the folder `advanced-options/raw-svg` and place it in your project
+- Add `svg-with-js/css/fa-svg-with-js` to your document (or write your own CSS)
 
 ### Examples
 
@@ -66,15 +65,89 @@ echo $FA->get_svg('fas fa-file', [
 ]);
 ```
 
-| Option                | What it means   |
-|-----------------------|--------------------------------------------------------------------------|
-| class                 | Adds classes to the SVG tag |
-| default_class         | If set to `false`, the default CSS class won't be added to the SVG tag. Deafult: `true`.  |
-| title                 | Adds a `<title>` inside the SVG tag for semantic icons |
-| title_id              | Adds an `id` attribute to `<title>` and adds `aria-labelledby` on the SVG tag with the same value |
-| role                  | The value of the `role` attribute in the SVG tag. Default: `img` |
-| fill                  | The value of the `fill` attribute in the `<path>` inside the SVG. Default: `currentColor` |
+Customise duotone icons:
 
+```php
+echo $FA->get_svg('fad fa-laugh-wink', [
+    'primary' => [
+        'fill'    => '#e64980',
+    ],
+    'secondary' => [
+        'fill'    => '#fcc417',
+        'opacity' => '1',
+    ],
+]);
+```
+
+| Option        | What it means                                                                                     |
+| ------------- | ------------------------------------------------------------------------------------------------- |
+| class         | Adds classes to the SVG tag                                                                       |
+| default_class | If set to `false`, the default CSS class won't be added to the SVG tag. Deafult: `true`.          |
+| inline_style  | Whether to add duotone styles as inline style to the `<svg>` tag. Deafult: `true`.                |
+| title         | Adds a `<title>` inside the SVG tag for semantic icons                                            |
+| title_id      | Adds an `id` attribute to `<title>` and adds `aria-labelledby` on the SVG tag with the same value |
+| role          | The value of the `role` attribute in the SVG tag. Default: `img`                                  |
+| fill          | The value of the `fill` attribute in the `<path>` inside the SVG. Default: `currentColor`         |
+| primary       | Duotone primary options (see table below)                                                         |
+| secondary     | Duotone secondary options (see table below)                                                       |
+
+## Duotone
+
+> Requires **v5.10.0** or greater, and a FontAwesome Pro license
+
+### options
+
+If `inline_style` is enabled, the value of `fill` and `opacity` are also used in the inline style on `<svg>` tag.
+
+| Option  | What it means                                                                             |
+| ------- | ----------------------------------------------------------------------------------------- |
+| fill    | The value of the `fill` attribute in the `<path>` inside the SVG. Default: `currentColor` |
+| opacity | The value of the `opacity` attribute in the `<path>` inside the SVG.                      |
+
+### Examples:
+
+Single colour:
+
+```php
+echo $FA->get_svg('fad fa-laugh-wink', [
+    'fill' => '#e64980',
+]);
+```
+
+Swapping Layer Opacity:
+
+```php
+echo $FA->get_svg('fad fa-laugh-wink', [
+    'fill'  => '#e64980',
+    'class' => 'fa-swap-opacity',
+]);
+```
+
+Single colour with custom opacity:
+
+```php
+echo $FA->get_svg('fad fa-laugh-wink', [
+    'fill' => '#e64980',
+    'secondary' => [
+        'opacity' => '0.2',
+    ],
+]);
+```
+
+Custom colours and opacity:
+
+```php
+echo $FA->get_svg('fad fa-laugh-wink', [
+    'primary' => [
+        'fill'    => '#e64980',
+        'opacity' => '0.5',
+    ],
+    'secondary' => [
+        'fill'    => '#fcc417',
+        'opacity' => '1',
+    ],
+]);
+```
 
 ## Accessibility
 
@@ -83,7 +156,6 @@ The below is implemented based on:
 - Font Awesome's [Accessibility docs](https://fontawesome.com/how-to-use/on-the-web/other-topics/accessibility)
 - Heather Migliorisi's article on CSS-Tricks [Accessible SVGs](https://css-tricks.com/accessible-svgs/)
 
-
 ### `role` attribute
 
 `role="img"` is added to the SVG tag by default:
@@ -91,7 +163,6 @@ The below is implemented based on:
 ```html
 <svg role="img"></svg>
 ```
-
 
 ### `<title>`, `aria-labelledby`
 
@@ -106,14 +177,13 @@ echo $FA->get_svg('fas fa-file', [
 
 ```html
 <svg aria-labelledby="file-id">
-    <title id="file-id">File</title>
+  <title id="file-id">File</title>
 </svg>
 ```
 
-
 ### `aria-*` attributes
 
-You can add any aria-* attribute to the SVG tag:
+You can add any aria-\* attribute to the SVG tag:
 
 ```php
 echo $FA->get_svg('fas fa-file', [
@@ -124,7 +194,6 @@ echo $FA->get_svg('fas fa-file', [
 ```html
 <svg aria-label="File"></svg>
 ```
-
 
 ### `aria-hidden` attribute
 
