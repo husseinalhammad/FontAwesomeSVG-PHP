@@ -5,6 +5,10 @@ class FontAwesomeSVG {
     public $svg_dir;
 
     public function __construct($svg_dir) {
+        if( !is_dir($svg_dir) ) {
+            throw new Exception("Directory $svg_dir does not exist");
+        }
+
         $this->svg_dir = $svg_dir;
     }
 
