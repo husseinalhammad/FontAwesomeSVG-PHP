@@ -5,6 +5,10 @@ class FontAwesomeSVG {
     public $svg_dir;
 
     public function __construct($svg_dir) {
+        if( !is_dir($svg_dir) ) {
+            throw new Exception("Directory $svg_dir does not exist");
+        }
+
         $this->svg_dir = $svg_dir;
     }
 
@@ -29,11 +33,12 @@ class FontAwesomeSVG {
         $doc->load($icon['filepath']);
 
         $default_opts = [
-            'title' => false,
-            'class' => false,
+            'title'         => false,
+            'class'         => false,
             'default_class' => true,
-            'role' => 'img',
-            'fill' => 'currentColor',
+            'inline_style'  => true,
+            'role'          => 'img',
+            'fill'          => 'currentColor',
         ];
 
         $opts = array_merge($default_opts, $opts);
@@ -90,9 +95,69 @@ class FontAwesomeSVG {
 
 
         
+
         foreach ($doc->getElementsByTagName('path') as $item) {
-            $item->setAttribute('fill', $opts['fill']);
+            $fill = $opts['fill'];
+            $opacity = false;
+            
+            // duotone
+            switch($item->getAttribute('class')) {
+                case 'fa-primary':
+                    if(isset($opts['primary']['fill'])) $fill = $opts['primary']['fill'];
+                    if(isset($opts['primary']['opacity'])) $opacity = $opts['primary']['opacity'];
+                break;
+                    
+                    
+                case 'fa-secondary':
+                    if(isset($opts['secondary']['fill'])) $fill = $opts['secondary']['fill'];
+                    if(isset($opts['secondary']['opacity'])) $opacity = $opts['secondary']['opacity'];
+                break;
+            }
+
+
+            $item->setAttribute('fill', $fill);
+            if($opacity) $item->setAttribute('opacity', $opacity);
         }
+
+
+
+
+
+        // duotone styles
+        if($opts['inline_style']) {
+            $styles = [];
+    
+            if(isset($opts['primary']['fill'])) {
+                $styles[] = '--fa-primary-color:' . $opts['primary']['fill'];
+            }
+    
+            if(isset($opts['primary']['opacity'])) {
+                $styles[] = '--fa-primary-opacity:' . $opts['primary']['opacity'];
+            }
+    
+    
+            if(isset($opts['secondary']['fill'])) {
+                $styles[] = '--fa-secondary-color:' . $opts['secondary']['fill'];
+            }
+    
+            if(isset($opts['secondary']['opacity'])) {
+                $styles[] = '--fa-secondary-opacity:' . $opts['secondary']['opacity'];
+            }
+
+
+            if(empty($styles) || !isset($opts['primary']['fill'], $opts['secondary']['fill']) ) {
+                $styles[] = 'color:' . $opts['fill'];
+            }
+            
+    
+    
+            if($styles) {
+                foreach ($doc->getElementsByTagName('svg') as $svg) {
+                    $svg->setAttribute('style', implode(';', $styles));
+                }
+            }
+        }
+
         
         return $doc->saveHTML();
     }
@@ -135,10 +200,6 @@ class FontAwesomeSVG {
      */
     public function get_icon_dir($style) {
         switch($style) {
-            case 'fas':
-                $dir = 'solid';
-                break;
-
             case 'far':
                 $dir = 'regular';
                 break;
@@ -151,6 +212,11 @@ class FontAwesomeSVG {
                 $dir = 'brands';
                 break;
 
+            case 'fad':
+                $dir = 'duotone';
+                break;
+
+            case 'fas': 
             default:
                 $dir = 'solid';
         }
