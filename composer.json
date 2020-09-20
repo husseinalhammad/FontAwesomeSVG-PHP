@@ -1,8 +1,8 @@
 {
     "name": "husseinalhammad/fontawesome-svg",
-    "version": "1.2.0",
     "description": "PHP class to add Font Awesome 5+'s SVG icons inline without Javascript.",
     "keywords": ["fontawesome", "svg"],
+    "license": "MIT",
     "homepage": "https://github.com/husseinalhammad/FontAwesomeSVG-PHP",
     "authors": [
         {
