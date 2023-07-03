@@ -16,5 +16,13 @@
     },
     "autoload": {
         "classmap": ["src"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Husseinalhammad\\FontawesomeSvg\\Tests\\": "tests"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.2"
     }
 }
