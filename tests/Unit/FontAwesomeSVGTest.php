@@ -126,7 +126,7 @@ final class FontAwesomeSVGTest extends TestCase
     /**
      * @dataProvider icons
      */
-    public function test_it_can_aria_labels($icon): void
+    public function test_it_can_add_aria_labels($icon): void
     {
         $fa = $this->createInstance();
 
