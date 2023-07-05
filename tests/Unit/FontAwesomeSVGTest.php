@@ -11,11 +11,24 @@ final class FontAwesomeSVGTest extends TestCase
     static public function icons(): array
     {
         return [
-            ['fab fa-test'],
-            ['fad fa-test'],
-            ['fal fa-test'],
-            ['far fa-test'],
-            ['fas fa-test'],
+            ['fab fa-test', 'brands', 'test'],
+            ['fad fa-test', 'duotone', 'test'],
+            ['fal fa-test', 'light', 'test'],
+            ['far fa-test', 'regular', 'test'],
+            ['fas fa-test', 'solid', 'test'],
+            ['fat fa-test', 'thin', 'test'],
+            ['fa-brands fa-test', 'brands', 'test'],
+            ['fa-duotone fa-test', 'duotone', 'test'],
+            ['fa-light fa-test', 'light', 'test'],
+            ['fa-regular fa-test', 'regular', 'test'],
+            ['fa-solid fa-test', 'solid', 'test'],
+            ['fa-thin fa-test', 'thin', 'test'],
+            ['fa-sharp fa-light fa-test', 'sharp-light', 'test'],
+            ['fa-sharp fa-regular fa-test', 'sharp-regular', 'test'],
+            ['fa-sharp fa-solid fa-test', 'sharp-solid', 'test'],
+            ['fasl fa-test', 'sharp-light', 'test'],
+            ['fasr fa-test', 'sharp-regular', 'test'],
+            ['fass fa-test', 'sharp-solid', 'test'],
         ];
     }
 
@@ -172,5 +185,18 @@ final class FontAwesomeSVGTest extends TestCase
         $this->assertStringNotContainsString('--fa-primary-opacity', $svg);
         $this->assertStringNotContainsString('--fa-secondary-color', $svg);
         $this->assertStringNotContainsString('--fa-secondary-opacity', $svg);
+    }
+
+    /**
+     * @dataProvider icons
+     */
+    public function test_it_can_get_the_icons($icon, $dir, $filename): void
+    {
+        $fa = $this->createInstance();
+
+        $details = $fa->get_icon_details($icon);
+
+        $this->assertStringContainsString($dir, $details['dir']);
+        $this->assertStringContainsString($filename, $details['filename']);
     }
 }

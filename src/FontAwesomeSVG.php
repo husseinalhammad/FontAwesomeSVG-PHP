@@ -175,8 +175,8 @@ class FontAwesomeSVG {
         $icon = array();
 
         $id = explode(' ', $id);
-        $dir = $this->get_icon_dir($id[0]);
-        $filename = $this->get_icon_filename($id[1]);
+        $dir = $this->get_icon_dir($id);
+        $filename = $this->get_icon_filename(end($id));
 
         $icon['dir'] = $dir;
         $icon['filename'] = $filename;
@@ -198,30 +198,33 @@ class FontAwesomeSVG {
      * @param string $style
      * @return string
      */
-    public function get_icon_dir($style) {
-        switch($style) {
-            case 'far':
-                $dir = 'regular';
-                break;
-
-            case 'fal':
-                $dir = 'light';
-                break;
-
-            case 'fab':
-                $dir = 'brands';
-                break;
-
-            case 'fad':
-                $dir = 'duotone';
-                break;
-
-            case 'fas': 
-            default:
-                $dir = 'solid';
+    public function get_icon_dir($classes) {
+        if (in_array('fa-sharp', $classes)) {
+            if (in_array('fa-regular', $classes)) return 'sharp-regular';
+            if (in_array('fa-light', $classes)) return 'sharp-light';
+            if (in_array('fa-solid', $classes)) return 'sharp-solid';
         }
 
-        return $dir;
+        if (in_array('fasr', $classes)) return 'sharp-regular';
+        if (in_array('fasl', $classes)) return 'sharp-light';
+        if (in_array('fass', $classes)) return 'sharp-solid';
+
+        if (in_array('far', $classes)) return 'regular';
+        if (in_array('fa-regular', $classes)) return 'regular';
+
+        if (in_array('fal', $classes)) return 'light';
+        if (in_array('fa-light', $classes)) return 'light';
+
+        if (in_array('fab', $classes)) return 'brands';
+        if (in_array('fa-brands', $classes)) return 'brands';
+
+        if (in_array('fad', $classes)) return 'duotone';
+        if (in_array('fa-duotone', $classes)) return 'duotone';
+
+        if (in_array('fat', $classes)) return 'thin';
+        if (in_array('fa-thin', $classes)) return 'thin';
+
+        return 'solid';
     }
 
 
