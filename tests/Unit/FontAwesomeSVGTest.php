@@ -21,7 +21,7 @@ final class FontAwesomeSVGTest extends TestCase
 
     private function createInstance(): FontAwesomeSVG
     {
-        return new FontAwesomeSVG(__DIR__ . '/../Fixtures/FA5');
+        return new FontAwesomeSVG(__DIR__ . '/../Fixtures/icons');
     }
 
     public function test_it_requires_an_existing_svg_dir(): void
