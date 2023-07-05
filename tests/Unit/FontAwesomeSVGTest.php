@@ -11,11 +11,11 @@ final class FontAwesomeSVGTest extends TestCase
     static public function icons(): array
     {
         return [
-            ['fab fa-500px'],
-            ['fad fa-calculator'],
-            ['fal fa-calculator'],
-            ['far fa-calculator'],
-            ['fas fa-calculator'],
+            ['fab fa-test'],
+            ['fad fa-test'],
+            ['fal fa-test'],
+            ['far fa-test'],
+            ['fas fa-test'],
         ];
     }
 
@@ -139,7 +139,7 @@ final class FontAwesomeSVGTest extends TestCase
     {
         $fa = $this->createInstance();
 
-        $svg = $fa->get_svg('fad fa-calculator', [
+        $svg = $fa->get_svg('fad fa-test', [
             'primary' => [
                 'fill'    => '#e64980',
                 'opacity' => '.1',
@@ -164,7 +164,7 @@ final class FontAwesomeSVGTest extends TestCase
     {
         $fa = $this->createInstance();
 
-        $svg = $fa->get_svg('fad fa-calculator', [
+        $svg = $fa->get_svg('fad fa-test', [
             'inline_style' => false,
         ]);
 
