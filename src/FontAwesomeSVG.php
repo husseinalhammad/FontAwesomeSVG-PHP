@@ -174,13 +174,14 @@ class FontAwesomeSVG {
     public function get_icon_details($id) {
         $icon = array();
 
-        $id = explode(' ', $id);
-        $dir = $this->get_icon_dir($id);
-        $filename = $this->get_icon_filename(end($id));
+        $classes = explode(' ', $id);
+        $dir = $this->get_icon_dir($classes);
+        $filename = $this->get_icon_filename($classes, $dir);
+        $filepath = $this->get_icon_filepath($dir, $filename);
 
         $icon['dir'] = $dir;
         $icon['filename'] = $filename;
-        $icon['filepath'] = str_replace('/', DIRECTORY_SEPARATOR, "$this->svg_dir/$dir/$filename.svg");
+        $icon['filepath'] = $filepath;
 
         if(!is_file($icon['filepath'])) {
             throw new Exception('File ' . $icon['filepath'] . ' does not exist.');
@@ -233,10 +234,36 @@ class FontAwesomeSVG {
     /**
      * Get the icon's SVG file name
      * 
-     * @param string $icon_name
+     * @param array $classes
+     * @param string $dir
      * @return string
      */
-    public function get_icon_filename($icon_name) {
-        return str_replace('fa-', '', $icon_name);
+    public function get_icon_filename($classes, $dir) {
+        foreach ($classes as $class) {
+            $filename = str_replace('fa-', '', $class);
+            $path = $this->get_icon_filepath($dir, $filename);
+
+            if (is_file($path)) {
+                return $filename;
+            }
+        }
+
+        $id = join(' ', $classes);
+
+        throw new Exception("No icon found for '$id'");
+    }
+
+
+
+
+    /**
+     * Get the icon's SVG file path
+     * 
+     * @param string $dir
+     * @param string $filename
+     * @return string
+     */
+    public function get_icon_filepath($dir, $filename) {
+        return str_replace('/', DIRECTORY_SEPARATOR, "$this->svg_dir/$dir/$filename.svg");
     }
 }
