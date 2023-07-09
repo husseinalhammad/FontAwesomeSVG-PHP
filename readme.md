@@ -1,6 +1,6 @@
 # Font Awesome SVG - PHP
 
-A PHP class that can be used to add [Font Awesome 5+](https://fontawesome.com/)'s SVG icons inline without Javascript.
+A PHP class that can be used to add [Font Awesome 6+](https://fontawesome.com/)'s SVG icons inline without Javascript.
 
 ## Installation
 
@@ -26,37 +26,37 @@ Or you can download the `FontAwesomeSVG.php` file and include it manually.
 // $dir = directory where SVG files are
 $FA = new FontAwesomeSVG($dir);
 
-echo $FA->get_svg('fas fa-file');
+echo $FA->get_svg('fa-solid fa-file');
 ```
 
 Add custom classes:
 
 ```php
-echo $FA->get_svg('fas fa-file', ['class' => 'my-custom-class another-class']);
+echo $FA->get_svg('fa-solid fa-file', ['class' => 'my-custom-class another-class']);
 ```
 
 Remove default class `.svg-inline--fa`:
 
 ```php
-echo $FA->get_svg('fas fa-file', ['default_class' => false]);
+echo $FA->get_svg('fa-solid fa-file', ['default_class' => false]);
 ```
 
 Change `<path>` fill (default is `currentColor`):
 
 ```php
-echo $FA->get_svg('fas fa-file', ['fill' => '#f44336']);
+echo $FA->get_svg('fa-solid fa-file', ['fill' => '#f44336']);
 ```
 
 Add `<title></title>`:
 
 ```php
-echo $FA->get_svg('fas fa-file', ['title' => 'My accessible icon']);
+echo $FA->get_svg('fa-solid fa-file', ['title' => 'My accessible icon']);
 ```
 
 Multiple options at once:
 
 ```php
-echo $FA->get_svg('fas fa-file', [
+echo $FA->get_svg('fa-solid fa-file', [
     'class' => 'my-custom-class another-class',
     'default_class' => false,
     'title' => 'My title',
@@ -68,7 +68,7 @@ echo $FA->get_svg('fas fa-file', [
 Customise duotone icons:
 
 ```php
-echo $FA->get_svg('fad fa-laugh-wink', [
+echo $FA->get_svg('fa-duotone fa-laugh-wink', [
     'primary' => [
         'fill'    => '#e64980',
     ],
@@ -94,6 +94,16 @@ echo $FA->get_svg('fad fa-laugh-wink', [
 ## Duotone
 
 > Requires **v5.10.0** or greater, and a FontAwesome Pro license
+
+## Sharp
+
+> Requires **v6.4.0** or greater, and a FontAwesome Pro license
+
+```php
+echo $FA->get_svg('fa-sharp fa-light fa-file');
+echo $FA->get_svg('fa-sharp fa-regular fa-file');
+echo $FA->get_svg('fa-sharp fa-solid fa-file');
+```
 
 ### options
 
@@ -149,6 +159,24 @@ echo $FA->get_svg('fad fa-laugh-wink', [
 ]);
 ```
 
+## Aliases
+
+The short aliases from version 5 are still supported
+
+```php
+echo $FA->get_svg('fab fa-twitter');
+echo $FA->get_svg('fad fa-file');
+echo $FA->get_svg('fal fa-file');
+echo $FA->get_svg('far fa-file');
+echo $FA->get_svg('fas fa-file');
+
+// And the new shorthands for thin and sharp
+echo $FA->get_svg('fat fa-file'); // thin
+echo $FA->get_svg('fasl fa-file'); // sharp-light
+echo $FA->get_svg('fasr fa-file'); // sharp-regular
+echo $FA->get_svg('fass fa-file'); // sharp-solid
+```
+
 ## Accessibility
 
 The below is implemented based on:
@@ -169,7 +197,7 @@ The below is implemented based on:
 You can set a `<title>`, an `id` for the `<title>` and the `aria-labelledby` attribute will be added automatically:
 
 ```php
-echo $FA->get_svg('fas fa-file', [
+echo $FA->get_svg('fa-solid fa-file', [
     'title' => 'File',
     'title_id' => 'file-id',
 ]);
@@ -186,7 +214,7 @@ echo $FA->get_svg('fas fa-file', [
 You can add any aria-\* attribute to the SVG tag:
 
 ```php
-echo $FA->get_svg('fas fa-file', [
+echo $FA->get_svg('fa-solid fa-file', [
     'aria-label' => 'File',
 ]);
 ```
@@ -200,7 +228,7 @@ echo $FA->get_svg('fas fa-file', [
 `aria-hidden="true"` is added to the SVG tag by default unless `<title id="">` (and `aria-labelledby`) or `aria-label` is set.
 
 ```php
-echo $FA->get_svg('fas fa-file');
+echo $FA->get_svg('fa-solid fa-file');
 ```
 
 ```html
