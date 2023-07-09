@@ -62,7 +62,7 @@ final class FontAwesomeSVGTest extends TestCase
     /**
      * @dataProvider icons
      */
-    public function test_it_can_remove_the_custom_class($icon): void
+    public function test_it_can_remove_the_default_class($icon): void
     {
         $fa = $this->createInstance();
 
