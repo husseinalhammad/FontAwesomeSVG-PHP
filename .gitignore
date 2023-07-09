@@ -1,2 +1,4 @@
 fontawesome-svgs/
 .tinkerwell
+vendor/
+.phpunit.cache
